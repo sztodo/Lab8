@@ -17,5 +17,7 @@ namespace Sztodolnik_Mihaela_Lab8.Modles
         public decimal Price { get; set; }
         [DataType(DataType.Date)]
         public DateTime PublishingDate { get; set; }
+        public int PublisherID { get; set; }
+        public Publisher Publisher { get; set; }
     }
 }

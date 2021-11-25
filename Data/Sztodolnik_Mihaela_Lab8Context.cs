@@ -15,5 +15,7 @@ namespace Sztodolnik_Mihaela_Lab8.Data
         }
 
         public DbSet<Sztodolnik_Mihaela_Lab8.Modles.Book> Book { get; set; }
+
+        public DbSet<Sztodolnik_Mihaela_Lab8.Modles.Publisher> Publisher { get; set; }
     }
 }

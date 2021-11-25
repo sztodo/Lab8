@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Sztodolnik_Mihaela_Lab8.Data;
 using Sztodolnik_Mihaela_Lab8.Modles;
 
-namespace Sztodolnik_Mihaela_Lab8.Pages.Books
+namespace Sztodolnik_Mihaela_Lab8.Pages.Publishers
 {
     public class IndexModel : PageModel
     {
@@ -19,11 +19,11 @@ namespace Sztodolnik_Mihaela_Lab8.Pages.Books
             _context = context;
         }
 
-        public IList<Book> Book { get;set; }
+        public IList<Publisher> Publisher { get;set; }
 
         public async Task OnGetAsync()
         {
-            Book = await _context.Book.Include(b => b.Publisher).ToListAsync();
+            Publisher = await _context.Publisher.ToListAsync();
         }
     }
 }
