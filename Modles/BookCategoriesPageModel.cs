@@ -10,7 +10,7 @@ namespace Sztodolnik_Mihaela_Lab8.Modles
     public class BookCategoriesPageModel : PageModel
     {
         public List<AssignedCategoryData> AssignedCategoryDataList;
-        public void PopulateAssignedCategoryData(Sztodolnik_Mihaela_Lab8 context,
+        public void PopulateAssignedCategoryData(Sztodolnik_Mihaela_Lab8Context context,
         Book book)
         {
             var allCategories = context.Category;
@@ -27,7 +27,7 @@ namespace Sztodolnik_Mihaela_Lab8.Modles
                 });
             }
         }
-        public void UpdateBookCategories(Sztodolnik_Mihaela_Lab8 context,
+        public void UpdateBookCategories(Sztodolnik_Mihaela_Lab8Context context,
         string[] selectedCategories, Book bookToUpdate)
         {
             if (selectedCategories == null)
