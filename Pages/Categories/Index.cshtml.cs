@@ -20,10 +20,27 @@ namespace Sztodolnik_Mihaela_Lab8.Pages.Categories
         }
 
         public IList<Category> Category { get;set; }
-
-        public async Task OnGetAsync()
+        public BookData BookD { get; set; }
+        public int BookID { get; set; }
+        public int CategoryID { get; set; }
+        public async Task OnGetAsync(int? id, int? categoryID)
         {
-            Category = await _context.Category.ToListAsync();
+            BookD = new BookData();
+
+            BookD.Books = await _context.Book
+            .Include(b => b.Publisher)
+            .Include(b => b.BookCategories)
+            .ThenInclude(b => b.Category)
+            .AsNoTracking()
+            .OrderBy(b => b.Title)
+            .ToListAsync();
+            if (id != null)
+            {
+                BookID = id.Value;
+                Book book = BookD.Books
+                .Where(i => i.ID == id.Value).Single();
+                BookD.Categories = book.BookCategories.Select(s => s.Category);
+            }
         }
     }
 }
