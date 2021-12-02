@@ -13,9 +13,10 @@ namespace Sztodolnik_Mihaela_Lab8.Modles
         [Required, StringLength(150, MinimumLength = 3)]
         [Display(Name = "Book Title")]
         public string Title { get; set; }
-        [RegularExpression(@"^[A-Z][a-z]+\s[A-Z][a-z]+$"), Required,
+        [RegularExpression(@"^[A-Z][a-z]+\s[A-Z][a-z]+$", ErrorMessage = "Numele autorului trebuie sa fie de forma 'Prenume Nume'"), Required,
 StringLength(50, MinimumLength = 3)]
         public string Author { get; set; }
+        [Range(1, 300)]
         [Column(TypeName = "decimal(6, 2)")]
         public decimal Price { get; set; }
         [DataType(DataType.Date)]
