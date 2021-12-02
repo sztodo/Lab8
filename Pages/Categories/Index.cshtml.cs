@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,28 +20,11 @@ namespace Sztodolnik_Mihaela_Lab8.Pages.Categories
             _context = context;
         }
 
-        public IList<Category> Category { get;set; }
-        public BookData BookD { get; set; }
-        public int BookID { get; set; }
-        public int CategoryID { get; set; }
-        public async Task OnGetAsync(int? id, int? categoryID)
-        {
-            BookD = new BookData();
+        public IList<Category> Category { get; set; }
 
-            BookD.Books = await _context.Book
-            .Include(b => b.Publisher)
-            .Include(b => b.BookCategories)
-            .ThenInclude(b => b.Category)
-            .AsNoTracking()
-            .OrderBy(b => b.Title)
-            .ToListAsync();
-            if (id != null)
-            {
-                BookID = id.Value;
-                Book book = BookD.Books
-                .Where(i => i.ID == id.Value).Single();
-                BookD.Categories = book.BookCategories.Select(s => s.Category);
-            }
+        public async Task OnGetAsync()
+        {
+            Category = await _context.Category.ToListAsync();
         }
     }
 }
